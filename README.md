@@ -40,3 +40,17 @@ Open the browser and go to
 ```
     http://localhost:8080/welcome
 ```
+
+## Contributors:
+
+<p float="left">
+
+<a href="https://github.com/sidistic">
+    <img src="https://github.com/sidistic.png?size=50" alt="Sidharth Sagar" width="50">
+</a>
+
+<a href="https://github.com/guptaviha">
+    <img src="https://github.com/guptaviha.png?size=50" alt="Viha Gupta" width="50">
+</a>
+
+</p>
