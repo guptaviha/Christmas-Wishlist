@@ -6,7 +6,7 @@ Objective: To develop a distributed and reliable backend in support of a simple 
 
 Our application is a wishlist tool where users can login, create posts, follow other users, and view posts of the people they follow. The webserver, written in Go, interacts with the client using gRPCs. [CoreOS](https://github.com/etcd-io/etcd/tree/main/raft), an open source Raft implementation, is used in the backend to provide consensus for the raft nodes that are spun up locally. 
 
-Please see the [Project Prompt](https://github.com/sidistic/ds_final/blob/main/Project_Prompt.pdf) for more details.
+Please see the [Project Prompt](https://github.com/guptaviha/Christmas-Wishlist/blob/main/Project_Prompt.pdf) for more details.
 
 ## Instructions To Run App
 ```bash
