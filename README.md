@@ -10,33 +10,30 @@ Please see the [Project Prompt](https://github.com/guptaviha/Christmas-Wishlist/
 
 ## Instructions To Run App
 
-Install go [Ref](https://go.dev/doc/install)
-```brew install go```
-
-Install goreman [Ref](https://github.com/mattn/goreman)
-```go install github.com/mattn/goreman@latest```
-
-Follow raftexample [Ref](https://github.com/etcd-io/etcd/tree/main/contrib/raftexample)
-
-1. Setup PATH variables
+#### Install go: [Ref](https://go.dev/doc/install)
 ```bash
-    export GOPATH=<dir>
-``` 
-For example: 
-```bash
-    export GOPATH=/Users/vihagupta/Documents/code/Christmas-Wishlist/
+    brew install go
 ```
 
+#### Install goreman: [Ref](https://github.com/mattn/goreman)
 ```bash
+    go install github.com/mattn/goreman@latest
+```
+
+
+#### Setup PATH variables: [Ref](https://github.com/etcd-io/etcd/tree/main/contrib/raftexample)
+```bash
+    export GOPATH=<dir>
+
     export PATH=$GOPATH/welcome-app/bin:$PATH
 ```
 
-2. Check that goreman is setup correctly
+#### Check that goreman is setup correctly
 ```bash
     which goreman
 ```
 
-3. Start goreman
+#### Start goreman: [Ref](https://github.com/etcd-io/etcd/tree/main/contrib/raftexample)
 ```bash
     cd <dir>/welcome-app/src/go.etcd.io/etcd/contrib/raftexample
 
@@ -45,14 +42,14 @@ For example:
     goreman start
 ```
 
-4. Add setup data - optional
+#### Add setup data - optional
 ```bash
     cd <dir>/welcome-app
 
     bash setup.sh
 ```
 
-5. Start the app
+#### Start the app
 ```bash
     cd <dir>/welcome-app
 
