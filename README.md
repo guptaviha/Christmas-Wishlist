@@ -9,15 +9,57 @@ Our application is a wishlist tool where users can login, create posts, follow o
 Please see the [Project Prompt](https://github.com/guptaviha/Christmas-Wishlist/blob/main/Project_Prompt.pdf) for more details.
 
 ## Instructions To Run App
-```bash
-    cd welcome-app/src/go.etcd.io/etcd/contrib/raftexample
-    goreman start
 
-    cd welcome-app
+Install go [Ref](https://go.dev/doc/install)
+```brew install go```
+
+Install goreman [Ref](https://github.com/mattn/goreman)
+```go install github.com/mattn/goreman@latest```
+
+Follow raftexample [Ref](https://github.com/etcd-io/etcd/tree/main/contrib/raftexample)
+
+1. Setup PATH variables
+```bash
+    export GOPATH=<dir>
+``` 
+For example: 
+```bash
+    export GOPATH=/Users/vihagupta/Documents/code/Christmas-Wishlist/
+```
+
+```bash
+    export PATH=$GOPATH/welcome-app/bin:$PATH
+```
+
+2. Check that goreman is setup correctly
+```bash
+    which goreman
+```
+
+3. Start goreman
+```bash
+    cd <dir>/welcome-app/src/go.etcd.io/etcd/contrib/raftexample
+
+    go build -o raftexample
+
+    goreman start
+```
+
+4. Add setup data - optional
+```bash
+    cd <dir>/welcome-app
+
     bash setup.sh
+```
+
+5. Start the app
+```bash
+    cd <dir>/welcome-app
+
     go run main.go
     go run server.go
 ```
+
 ## Instructions To Run Tests
 
 Must run setup.sh first before running the following tests.

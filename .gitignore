@@ -5,4 +5,5 @@
 *.wal
 
 # Ignore whatever is generated in /Users/viha/code/ds_final/welcome-app/src/go.etcd.io/etcd/contrib/raftexample
-welcome-app/src/
+welcome-app/src/go.etcd.io/etcd/*
+welcome-app/pkg/*
