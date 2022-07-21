@@ -5,7 +5,6 @@ import (
 	"fmt"
 	"io/ioutil"
 	"log"
-	// "os"
 	"net/http"
 	"os/exec"
 
@@ -53,22 +52,12 @@ func (s *Server) GetFeed(ctx context.Context, in *FeedRequest) (*FeedResponse, e
 	followers := map[string]bool{}
 
 	for _, b := range users {
-		// fmt.Println(b.Username)
-		// fmt.Println(b.Password)
 		if b.Username == in.Username {
 			for _, follower := range b.Follows {
 				followers[follower] = true
 			}
-			fmt.Println("Found followers Successfully!")
 		}
 	}
-
-	fmt.Println(in.Username)
-	fmt.Println(followers)
-
-	// curruser := CurrUser{ip_username}
-
-	// fmt.Println(curruser)
 
 	resp, err = http.Get("http://127.0.0.1:12380/posts")
 	if err != nil {
@@ -90,21 +79,16 @@ func (s *Server) GetFeed(ctx context.Context, in *FeedRequest) (*FeedResponse, e
 	// we unmarshal our byteArray which contains our
 	// jsonFile's content into 'users' which we defined above
 	json.Unmarshal(body, &posts)
-	fmt.Println(posts)
 
 	for _, p := range posts {
-		// fmt.Println(b.Username)
-		// fmt.Println(b.Password)
 		if followers[p.Author] {
 			filterPostIDs = append(filterPostIDs, int32(p.PostID))
 			filterPostTitles = append(filterPostTitles, p.Title)
 			filterPostAuthor = append(filterPostAuthor, p.Author)
 			filterPostDescription = append(filterPostDescription, p.Description)
 			filterPostTimestamps = append(filterPostTimestamps, p.Timestamp)
-			fmt.Println("Filtered Posts for feed Successfully!")
 		}
 	}
-	fmt.Println(filterPostIDs, filterPostTitles)
 
 	return &FeedResponse{Postid: filterPostIDs,
 		Title:       filterPostTitles,
@@ -113,7 +97,7 @@ func (s *Server) GetFeed(ctx context.Context, in *FeedRequest) (*FeedResponse, e
 		Timestamp:   filterPostTimestamps}, nil
 }
 func (s *Server) PostToServer(ctx context.Context, in *PostData) (*PostDataResponse, error) {
-	
+
 	resp, err := http.Get("http://127.0.0.1:12380/posts")
 	if err != nil {
 		fmt.Println(err)
@@ -129,8 +113,6 @@ func (s *Server) PostToServer(ctx context.Context, in *PostData) (*PostDataRespo
 
 	json.Unmarshal(body, &posts)
 
-
-
 	posts = append(posts, Post{
 		PostID:      int(in.Postid),
 		Title:       in.Title,
@@ -142,7 +124,7 @@ func (s *Server) PostToServer(ctx context.Context, in *PostData) (*PostDataRespo
 	if err != nil {
 		fmt.Println(err)
 	}
-	cmd := exec.Command("curl", "-L", "http://127.0.0.1:12380/posts", "-XPUT", "-d " +string(byteValue) )
+	cmd := exec.Command("curl", "-L", "http://127.0.0.1:12380/posts", "-XPUT", "-d "+string(byteValue))
 	cmd.Run()
 
 	return &PostDataResponse{Success: true}, nil

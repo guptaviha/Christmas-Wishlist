@@ -31,6 +31,7 @@ func main() {
 		http.StripPrefix("/static/",
 			http.FileServer(http.Dir("static"))))
 
+	// landing page endpoint
 	http.HandleFunc("/welcome", func(w http.ResponseWriter, r *http.Request) {
 
 		templates := template.Must(template.ParseFiles("templates/welcome.html"))
@@ -40,6 +41,7 @@ func main() {
 		}
 	})
 
+	// login page endpoint
 	http.HandleFunc("/login", func(w http.ResponseWriter, r *http.Request) {
 
 		templates := template.Must(template.ParseFiles("templates/login.html"))
@@ -49,6 +51,7 @@ func main() {
 		}
 	})
 
+	// verify-login endpoint
 	http.HandleFunc("/verify-login", func(w http.ResponseWriter, r *http.Request) {
 
 		r.ParseForm()
@@ -59,7 +62,7 @@ func main() {
 		var conn *grpc.ClientConn
 		conn, err := grpc.Dial(":9000", grpc.WithInsecure())
 		if err != nil {
-			log.Fatalf("did not connect: %s", err)
+			log.Fatalf("Did not connect: %s", err)
 		}
 		defer conn.Close()
 
@@ -87,6 +90,7 @@ func main() {
 		}
 	})
 
+	// signup page endpoint
 	http.HandleFunc("/signup", func(w http.ResponseWriter, r *http.Request) {
 
 		templates := template.Must(template.ParseFiles("templates/signup.html"))
@@ -96,6 +100,7 @@ func main() {
 		}
 	})
 
+	// add-user endpoint
 	http.HandleFunc("/add-user", func(w http.ResponseWriter, r *http.Request) {
 		r.ParseForm()
 
@@ -107,7 +112,7 @@ func main() {
 		var conn *grpc.ClientConn
 		conn, err := grpc.Dial(":9000", grpc.WithInsecure())
 		if err != nil {
-			log.Fatalf("did not connect: %s", err)
+			log.Fatalf("Did not connect: %s", err)
 		}
 		defer conn.Close()
 
@@ -138,11 +143,12 @@ func main() {
 
 	})
 
+	// feed page endpoint
 	http.HandleFunc("/feed", func(w http.ResponseWriter, r *http.Request) {
 		var conn *grpc.ClientConn
 		conn, err := grpc.Dial(":9000", grpc.WithInsecure())
 		if err != nil {
-			log.Fatalf("did not connect: %s", err)
+			log.Fatalf("Did not connect: %s", err)
 		}
 		defer conn.Close()
 
@@ -165,16 +171,6 @@ func main() {
 			})
 		}
 
-		// for _, p := range response.FeedData {
-		// 	posts = append(posts, feed.Posts{
-		// 		PostID:      int(p.Postid),
-		// 		Title:       p.Title,
-		// 		Author:      p.Author,
-		// 		Description: p.Description,
-		// 		Timestamp:   p.Timestamp})
-		// }
-		// log.Println(response.postid)
-
 		templates := template.Must(template.ParseFiles("templates/feed.html"))
 		if err := templates.ExecuteTemplate(w, "feed.html", currposts); err != nil {
 			http.Error(w, err.Error(), http.StatusInternalServerError)
@@ -182,15 +178,7 @@ func main() {
 
 	})
 
-	// http.HandleFunc("/api/feed", func(w http.ResponseWriter, r *http.Request) {
-
-	// 	templates := template.Must(template.ParseFiles("data/posts.json"))
-
-	// 	if err := templates.ExecuteTemplate(w, "posts.json", curruser); err != nil {
-	// 		http.Error(w, err.Error(), http.StatusInternalServerError)
-	// 	}
-	// })
-
+	// add-post endpoint
 	http.HandleFunc("/add-post", func(w http.ResponseWriter, r *http.Request) {
 		r.ParseForm()
 
@@ -200,7 +188,7 @@ func main() {
 		var conn *grpc.ClientConn
 		conn, err := grpc.Dial(":9000", grpc.WithInsecure())
 		if err != nil {
-			log.Fatalf("did not connect: %s", err)
+			log.Fatalf("Did not connect: %s", err)
 		}
 		defer conn.Close()
 
@@ -221,12 +209,13 @@ func main() {
 		}
 	})
 
+	// users page endpoint
 	http.HandleFunc("/users", func(w http.ResponseWriter, r *http.Request) {
 
 		var conn *grpc.ClientConn
 		conn, err := grpc.Dial(":9000", grpc.WithInsecure())
 		if err != nil {
-			log.Fatalf("did not connect: %s", err)
+			log.Fatalf("Did not connect: %s", err)
 		}
 		defer conn.Close()
 
@@ -242,6 +231,8 @@ func main() {
 			http.Error(w, err.Error(), http.StatusInternalServerError)
 		}
 	})
+
+	// unfollow endpoint
 	http.HandleFunc("/unfollow", func(w http.ResponseWriter, r *http.Request) {
 		r.ParseForm()
 
@@ -250,7 +241,7 @@ func main() {
 		var conn *grpc.ClientConn
 		conn, err := grpc.Dial(":9000", grpc.WithInsecure())
 		if err != nil {
-			log.Fatalf("did not connect: %s", err)
+			log.Fatalf("Did not connect: %s", err)
 		}
 		defer conn.Close()
 
@@ -264,7 +255,7 @@ func main() {
 		if err != nil {
 			log.Fatalf("Could not UpdateFollower: %s", err)
 		}
-		fmt.Println(res.Success)
+
 		if res.Success {
 			templates := template.Must(template.ParseFiles("templates/welcome.html"))
 
@@ -287,6 +278,7 @@ func main() {
 
 	})
 
+	// follow endpoint
 	http.HandleFunc("/follow", func(w http.ResponseWriter, r *http.Request) {
 		r.ParseForm()
 
@@ -295,7 +287,7 @@ func main() {
 		var conn *grpc.ClientConn
 		conn, err := grpc.Dial(":9000", grpc.WithInsecure())
 		if err != nil {
-			log.Fatalf("did not connect: %s", err)
+			log.Fatalf("Did not connect: %s", err)
 		}
 		defer conn.Close()
 
@@ -332,15 +324,7 @@ func main() {
 
 	})
 
-	// http.HandleFunc("/api/users", func(w http.ResponseWriter, r *http.Request) {
-
-	// 	templates := template.Must(template.ParseFiles("data/users.json"))
-
-	// 	if err := templates.ExecuteTemplate(w, "users.json", curruser); err != nil {
-	// 		http.Error(w, err.Error(), http.StatusInternalServerError)
-	// 	}
-	// })
-
+	// signout page endpoint
 	http.HandleFunc("/signout", func(w http.ResponseWriter, r *http.Request) {
 
 		// Reset user to guest

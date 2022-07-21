@@ -1,1 +1,0 @@
-curl -L http://127.0.0.1:12380/users -XPUT -d '[{"Username":"vihaha","Name":"viha","Password":"v","Follows":["karanimal","vihaha"]},{"Username":"karanimal","Name":"karan","Password":"v","Follows":["vihaha"]},{"Username":"sidistic","Name":"sid","Password":"v","Follows":[]},{"Username":"bappi","Name":"bharat","Password":"v","Follows":[]}]'

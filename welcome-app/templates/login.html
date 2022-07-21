@@ -1,25 +1,11 @@
 <!DOCTYPE html>
 <html>
+
 <head>
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <link rel="stylesheet" type="text/css" href="/static/styles.css">
-
-<!-- <script>
-    function ValidationEvent(event){
-        event.preventDefault()
-
-        var username = document.getElementsByName("username")[0].value
-        var password = document.getElementsByName("password")[0].value
-        console.log(username, password)
-
-
-        
-        // alert("hello");
-        return false
-    }
-</script> -->
-
 </head>
+
 <body>
 
     <div class="topnav">
@@ -29,41 +15,25 @@
         <a href="/feed">Feed</a>
         <a href="/users">Users</a>
         <a href="/signout">Sign Out</a>
-    </div>    
+    </div>
 
-    <h2>Login</h2> 
-
-    <!-- <form onSubmit="return ValidationEvent(event)">
-
-        <div class="container">
-        <label for="username"><b>Username</b></label>
-        <input type="text" placeholder="Enter Username" name="username" required>
-    
-        <label for="password"><b>Password</b></label>
-        <input type="password" placeholder="Enter Password" name="password" required>
-            
-        <button type="submit">Login</button>
-        
-        </div>
-    
-    </form> -->
-
-
+    <h2>Login</h2>
 
     <form action="/verify-login" method="post">
 
-    <div class="container">
-        <label for="username"><b>Username</b></label>
-        <input type="text" placeholder="Enter Username" name="username" required>
+        <div class="container">
+            <label for="username"><b>Username</b></label>
+            <input type="text" placeholder="Enter Username" name="username" required>
 
-        <label for="password"><b>Password</b></label>
-        <input type="password" placeholder="Enter Password" name="password" required>
-            
-        <button type="submit">Login</button>
-        
-    </div>
+            <label for="password"><b>Password</b></label>
+            <input type="password" placeholder="Enter Password" name="password" required>
+
+            <button type="submit">Login</button>
+
+        </div>
 
     </form>
 
 </body>
+
 </html>

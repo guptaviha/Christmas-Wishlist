@@ -3,10 +3,8 @@ package login
 import (
 	"encoding/json"
 	"fmt"
-	"net/http"
 	"io/ioutil"
-	"log"
-	// "os/exec"
+	"net/http"
 
 	"golang.org/x/net/context"
 )
@@ -22,11 +20,10 @@ type Users struct {
 }
 
 func (s *Server) Authenticate(ctx context.Context, in *LoginDetails) (*LoginResponse, error) {
-	log.Printf("Receieved following details from Client: \nusername: %s\nPassword: %s ", in.Username, in.Password)
 
 	resp, err := http.Get("http://127.0.0.1:12380/users")
 	if err != nil {
-		// handle err
+		fmt.Println(err)
 	}
 	defer resp.Body.Close()
 	body, err := ioutil.ReadAll(resp.Body)
@@ -44,20 +41,12 @@ func (s *Server) Authenticate(ctx context.Context, in *LoginDetails) (*LoginResp
 	done := false
 
 	for _, b := range users {
-		// fmt.Println(b.Username)
-		// fmt.Println(b.Password)
 		if b.Username == in.Username && b.Password == in.Password {
 			// validate = true
-			fmt.Println("Validated Successfully!")
+			fmt.Println("Validated successfully!")
 			done = true
 		}
 	}
 
-	fmt.Println(in.Username)
-	fmt.Println(in.Password)
-
-	// curruser := CurrUser{ip_username}
-
-	// fmt.Println(curruser)
 	return &LoginResponse{Name: in.Username, Done: done}, nil
 }

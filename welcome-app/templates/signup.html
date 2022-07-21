@@ -1,9 +1,11 @@
 <!DOCTYPE html>
 <html>
+
 <head>
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <link rel="stylesheet" type="text/css" href="/static/styles.css">
 </head>
+
 <body>
 
     <div class="topnav">
@@ -13,30 +15,31 @@
         <a href="/feed">Feed</a>
         <a href="/users">Users</a>
         <a href="/signout">Sign Out</a>
-    </div>    
+    </div>
 
     <h2>Sign Up</h2>
 
     <form action="/add-user" method="post">
 
-    <div class="container">
-        <label for="username"><b>Username</b></label>
-        <input type="text" placeholder="Enter Username" name="username" required>
+        <div class="container">
+            <label for="username"><b>Username</b></label>
+            <input type="text" placeholder="Enter Username" name="username" required>
 
-        <label for="name"><b>Name</b></label>
-        <input type="text" placeholder="Enter Name" name="name" required>
+            <label for="name"><b>Name</b></label>
+            <input type="text" placeholder="Enter Name" name="name" required>
 
-        <label for="password"><b>Password</b></label>
-        <input type="password" placeholder="Enter Password" name="password" required>
+            <label for="password"><b>Password</b></label>
+            <input type="password" placeholder="Enter Password" name="password" required>
 
-        <label for="password"><b>Repeat Password</b></label>
-        <input type="password" placeholder="Enter Password Again" name="confirm_password" required>
-            
-        <button type="submit">Create Account</button>
-        
-    </div>
+            <label for="password"><b>Repeat Password</b></label>
+            <input type="password" placeholder="Enter Password Again" name="confirm_password" required>
+
+            <button type="submit">Create Account</button>
+
+        </div>
 
     </form>
 
 </body>
+
 </html>

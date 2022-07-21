@@ -1,9 +1,11 @@
 <!DOCTYPE html>
 <html>
+
 <head>
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <link rel="stylesheet" type="text/css" href="/static/styles.css">
 </head>
+
 <body>
 
     <div class="topnav">
@@ -13,83 +15,36 @@
         <a href="/feed">Feed</a>
         <a class="active" href="/users">Users</a>
         <a href="/signout">Sign Out</a>
-    </div>    
+    </div>
 
-    <h2>Users You follow</h2> 
+    <h2>Users You follow</h2>
     {{range $index, $element := .Followers}}
     <hr>
     <form action="/unfollow" method="post" style="border: none;">
-    <div class = "usercontainer">
-        <div>
-            Username: {{$element}}
+        <div class="usercontainer">
+            <div>
+                Username: {{$element}}
+            </div>
+            <input type="hidden" id="username" name="username" value="{{$element}}">
+            <button style="background-color: red" type="submit">Unfollow</button>
         </div>
-        <input type="hidden" id="username" name="username" value="{{$element}}">
-        <button style="background-color: red" type="submit">Unfollow</button>
-    </div>
     </form>
     {{end}}
-    <h2>Discover Users</h2> 
+    <h2>Discover Users</h2>
     {{range $index, $element := .NotFollowers}}
     <hr>
     <form action="/follow" method="post" style="border: none;">
-    <div class = "usercontainer">
-        <div>
-            Username: {{$element}}
+        <div class="usercontainer">
+            <div>
+                Username: {{$element}}
+            </div>
+            <input type="hidden" id="username" name="username" value="{{$element}}">
+            <button type="submit">Follow</button>
         </div>
-        <input type="hidden" id="username" name="username" value="{{$element}}">
-        <button type="submit">Follow</button>
-    </div>
     </form>
-    {{end}}  
+    {{end}}
 
 
 </body>
-
-<!-- <script>
-    function fetchUsers(){
-
-        fetch('/api/users')
-            .then(response => response.json()) //parsing response object to text => needs to be json
-            // .then(data => console.log(data))
-            .then(users => renderUsers(users));
-
-        return false
-    }
-
-    fetchUsers()
-
-    function renderUsers(users){
-
-        users.forEach(user => {
-
-            parentElement = document.createElement('div')
-            parentAtt = document.createAttribute("class");
-            parentAtt.value = "usercontainer"; 
-            parentElement.setAttributeNode(parentAtt);
-
-            usernameElement = document.createElement('div');
-            // usernameAtt = document.createAttribute("class");
-            // usernameAtt.value = "user"; 
-            // parentElement.setAttributeNode(usernameAtt);
-
-            nameElement = document.createElement('div');
-            followElement = document.createElement('button');
-
-            usernameElement.innerHTML = "Username: " + user.username;
-            nameElement.innerHTML = "Name: " + user.name;
-            followElement.innerHTML = "Follow";
-
-            parentElement.appendChild(usernameElement);
-            parentElement.appendChild(nameElement);
-            parentElement.appendChild(followElement);
-
-            feedContainer = document.getElementById("user-container");
-            feedContainer.appendChild(parentElement)
-
-        });
-
-
-    }
-</script> -->
 
 </html>

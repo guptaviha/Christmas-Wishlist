@@ -5,11 +5,9 @@ import (
 	"fmt"
 	"io/ioutil"
 	"net/http"
-	// "log"
-	// "net/url"
-	"golang.org/x/net/context"
-	// "strings"
 	"os/exec"
+
+	"golang.org/x/net/context"
 )
 
 type User struct {
@@ -55,14 +53,12 @@ func (s *Server) SignUpUser(ctx context.Context, in *SignUpRequest) (*SignUpResp
 		Follows:  []string{},
 	})
 
-	// fmt.Println(users)
 	dataBytes, err := json.Marshal(users)
 	if err != nil {
 		fmt.Println(err)
 	}
-	fmt.Println(string(dataBytes))
 
-	cmd := exec.Command("curl", "-L", "http://127.0.0.1:12380/users", "-XPUT", "-d " +string(dataBytes) )
+	cmd := exec.Command("curl", "-L", "http://127.0.0.1:12380/users", "-XPUT", "-d "+string(dataBytes))
 	cmd.Run()
 
 	return &SignUpResponse{Success: true}, nil
@@ -93,6 +89,7 @@ func (s *Server) GetFollowing(ctx context.Context, in *FollowerRequest) (*Follow
 			Followed = u.Follows
 		}
 	}
+
 	for _, u := range users {
 		if !CheckIfFollowed(u.Username, Followed) {
 			notFollowed = append(notFollowed, u.Username)
@@ -147,14 +144,13 @@ func (s *Server) UpdateFollower(ctx context.Context, in *UpdateFollowersRequest)
 		}
 	}
 
-
 	dataBytes, err := json.Marshal(users)
 	if err != nil {
 		fmt.Println(err)
 	}
 	fmt.Println(string(dataBytes))
 
-	cmd := exec.Command("curl", "-L", "http://127.0.0.1:12380/users", "-XPUT", "-d " +string(dataBytes) )
+	cmd := exec.Command("curl", "-L", "http://127.0.0.1:12380/users", "-XPUT", "-d "+string(dataBytes))
 	cmd.Run()
 
 	return &UpdateFollowersResponse{Success: true}, nil

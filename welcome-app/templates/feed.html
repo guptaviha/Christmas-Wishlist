@@ -1,11 +1,11 @@
 <!DOCTYPE html>
 <html>
+
 <head>
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <link rel="stylesheet" type="text/css" href="/static/styles.css">
-
-
 </head>
+
 <body>
 
     <div class="topnav">
@@ -15,7 +15,7 @@
         <a class="active" href="/feed">Feed</a>
         <a href="/users">Users</a>
         <a href="/signout">Sign Out</a>
-    </div>    
+    </div>
 
     <h2>My Feed</h2>
 
@@ -24,77 +24,26 @@
         <div class="feedcontainer">
             <label for="title"><b>Title</b></label>
             <input type="text" name="title" required>
-    
+
             <label for="description"><b>Description</b></label>
             <textarea id="description" name="description" rows="4" cols="50" required></textarea>
-                
-            <button type="submit">Add Post</button>
-            
-        </div>
-    
-        </form>
 
-        
-    {{range $index, $element := .}} 
+            <button type="submit">Add Post</button>
+
+        </div>
+
+    </form>
+
+    {{range $index, $element := .}}
     <hr>
     <div class="feedcontainer">
-        <div class = "title">Title: {{$element.Title}}</div>
+        <div class="title">Title: {{$element.Title}}</div>
         <div>Author: {{$element.Author}}</div>
         <div>Description: {{$element.Description}}</div>
         <div>Timestamp: {{$element.Timestamp}}</div>
     </div>
     {{end}}
 
-
-
 </body>
-<!-- 
-<script>
-    function fetchPosts(){
-
-        fetch('/api/feed')
-            .then(response => response.json()) //parsing response object to text => needs to be json
-            // .then(data => console.log(data))
-            .then(posts => renderPosts(posts));
-
-        return false
-    }
-
-    // fetchPosts()
-
-    function renderPosts(posts){
-        posts.forEach(post => {
-
-            parentElement = document.createElement('div')
-            parentAtt = document.createAttribute("class");
-            parentAtt.value = "feedcontainer"; 
-            parentElement.setAttributeNode(parentAtt);
-
-            titleElement = document.createElement('div');
-            titleAtt = document.createAttribute("class");
-            titleAtt.value = "title"; 
-            titleElement.setAttributeNode(titleAtt);
-
-            authorElement = document.createElement('div');
-            descriptionElement = document.createElement('div');
-            timestampElement = document.createElement('div');
-
-            titleElement.innerHTML = "Title: " + post.title;
-            authorElement.innerHTML = "Author: " + post.author;
-            descriptionElement.innerHTML = "Description: " + post.description;
-            timestampElement.innerHTML = "Timestamp: " + post.timestamp;
-
-            parentElement.appendChild(titleElement);
-            parentElement.appendChild(authorElement);
-            parentElement.appendChild(descriptionElement);
-            parentElement.appendChild(timestampElement);
-
-            feedContainer = document.getElementById("feed-container");
-            feedContainer.appendChild(parentElement)
-
-        });
-
-    }
-</script> -->
 
 </html>
